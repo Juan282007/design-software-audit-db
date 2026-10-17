@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - changeSet:
+      id: quality-fixes-audit-950
+      author: jesus-gonzalez
+      labels: "quality,v2"
+      comment: id DEFAULT gen_random_uuid e indices de FK faltantes
+      changes:
+        - sqlFile: {path: 950_quality_fixes.sql, relativeToChangelogFile: true, splitStatements: true, stripComments: false}
+      rollback:
+        - sql: {sql: "SELECT 1;"}
+
+  - changeSet:
+      id: remediation-audit-960
+      author: jesus-gonzalez
+      labels: "remediation,congruence,v2,partition"
+      comment: "R3: audit_record particionada por RANGE mensual de received_at + indices idx_->ix_ (T-D, T-H)"
+      changes:
+        - sqlFile: {path: 960_remediation.sql, relativeToChangelogFile: true, splitStatements: true, stripComments: false}
+      rollback:
+        - sqlFile: {path: ../../05_rollbacks/01_ddl/04_alter/960_remediation.rollback.sql, relativeToChangelogFile: true, stripComments: false}
+
+  - changeSet:
+      id: remediation-audit-961
+      author: jesus-gonzalez
+      labels: "remediation,congruence,v2"
+      comment: "R3: audit_event_seen (dedup global de event_id) — preserva idempotencia tras particionar"
+      changes:
+        - sqlFile: {path: 961_remediation_event_seen.sql, relativeToChangelogFile: true, splitStatements: true, stripComments: false}
+      rollback:
+        - sqlFile: {path: ../../05_rollbacks/01_ddl/04_alter/961_remediation_event_seen.rollback.sql, relativeToChangelogFile: true, stripComments: false}
+
+  - changeSet:
+      id: hu-aud-001-training-center-scope-projection
+      author: Juan282007
+      labels: "hu-aud-001,security,scope"
+      comment: "Adds nullable internal training-center projection and query index."
+      changes:
+        - sqlFile: {path: 962_add_training_center_scope.sql, relativeToChangelogFile: true, splitStatements: true, stripComments: false}
+      rollback:
+        - sqlFile: {path: ../../05_rollbacks/01_ddl/04_alter/962_add_training_center_scope.rollback.sql, relativeToChangelogFile: true, splitStatements: true, stripComments: false}

@@ -1,0 +1,73 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001_grant_audit_reader_permissions
+      author: FreinierCardona
+      logicalFilePath: db/changelog/changes/001_base/001_grant_audit_reader_permissions.sql
+      labels: "hu-003-dev,ddl,base,extensions"
+      comment: Grants permissions to the audit_reader role.
+      changes:
+        - sqlFile:
+            path: 001_grant_audit_reader_permissions.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/03_dcl/01_grants/001_grant_audit_reader_permissions.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+  - changeSet:
+      id: 002_grant_audit_writer_permissions
+      author: FreinierCardona
+      logicalFilePath: db/changelog/changes/001_base/002_grant_audit_writer_permissions.sql
+      labels: "hu-003-dev,ddl,base,extensions"
+      comment: Grants permissions to the audit_writer role.
+      changes:
+        - sqlFile:
+            path: 002_grant_audit_writer_permissions.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/03_dcl/01_grants/002_grant_audit_writer_permissions.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+  - changeSet:
+      id: 003_grant_audit_admin_permissions
+      author: FreinierCardona
+      logicalFilePath: db/changelog/changes/001_base/003_grant_audit_admin_permissions.sql
+      labels: "hu-003-dev,ddl,base,extensions"
+      comment: Grants permissions to the audit_admin role.
+      changes:
+        - sqlFile:
+            path: 003_grant_audit_admin_permissions.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/03_dcl/01_grants/003_grant_audit_admin_permissions.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+  - changeSet:
+      id: hu-aud-001-dedup-and-immutability-privileges
+      author: Juan282007
+      labels: "hu-aud-001,security,dcl"
+      comment: "Grants writer dedup insertion and explicitly protects both audit tables."
+      changes:
+        - sqlFile:
+            path: 004_grant_audit_dedup_permissions.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/03_dcl/01_grants/004_grant_audit_dedup_permissions.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+  - changeSet:
+      id: hu-aud-001-dedup-conflict-select
+      author: Juan282007
+      labels: "hu-aud-001,security,dcl"
+      comment: "Allows audit_writer to use INSERT ON CONFLICT for global deduplication."
+      changes:
+        - sqlFile: {path: 005_grant_audit_dedup_conflict_select.sql, relativeToChangelogFile: true, stripComments: false}
+      rollback:
+        - sqlFile: {path: ../../05_rollbacks/03_dcl/01_grants/005_grant_audit_dedup_conflict_select.rollback.sql, relativeToChangelogFile: true, stripComments: false}

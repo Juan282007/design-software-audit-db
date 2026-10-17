@@ -1,0 +1,49 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001_create_audit_reader_role
+      author: FreinierCardona
+      logicalFilePath: db/changelog/changes/001_base/001_create_audit_reader_role.sql
+      labels: "hu-003-dev,ddl,base,extensions"
+      comment: Creates the audit_reader role.
+      changes:
+        - sqlFile:
+            path: 001_create_audit_reader_role.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/03_dcl/00_roles/001_create_audit_reader_role.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+  - changeSet:
+      id: 002_create_audit_writer_role
+      author: FreinierCardona
+      logicalFilePath: db/changelog/changes/001_base/001_create_audit_writer_role.sql
+      labels: "hu-003-dev,ddl,base,extensions"
+      comment: Creates the audit_writer role.
+      changes:
+        - sqlFile:
+            path: 002_create_audit_writer_role.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/03_dcl/00_roles/002_create_audit_writer_role.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+  - changeSet:
+      id: 003_create_audit_admin_role
+      author: FreinierCardona
+      logicalFilePath: db/changelog/changes/001_base/001_create_audit_admin_role.sql
+      labels: "hu-003-dev,ddl,base,extensions"
+      comment: Creates the audit_admin role.
+      changes:
+        - sqlFile:
+            path: 003_create_audit_admin_role.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/03_dcl/00_roles/003_create_audit_admin_role.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false

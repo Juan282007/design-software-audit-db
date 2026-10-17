@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-audit_record_table
+      author: FreinierCardona
+      logicalFilePath: db/changelog/changes/001_base/001_create_audit_record_table.sql
+      labels: "hu-003-dev,ddl,base,extensions"
+      comment: Creates the main table for storing immutable audit events.
+      changes:
+        - sqlFile:
+            path: 001_create_audit_record_table.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_tables/001_create_audit_record_table.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false

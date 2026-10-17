@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001_create_audit_record_indexes
+      author: FreinierCardona
+      logicalFilePath: db/changelog/changes/001_base/001_create_audit_record_indexes.sql
+      labels: "hu-001-dev,ddl,base,extensions"
+      comment: Creates indexes for optimizing queries on the audit_record table.
+      changes:
+        - sqlFile:
+            path: 001_create_audit_record_indexes.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/10_indexes/001_create_audit_record_indexes.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
