@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001_secure_audit_record
+      author: FreinierCardona
+      logicalFilePath: db/changelog/changes/001_base/001_secure_audit_record.sql
+      labels: "hu-003-dev,ddl,base,extensions"
+      comment: Secures the audit_record table.
+      changes:
+        - sqlFile:
+            path: 001_secure_audit_record.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/03_dcl/02_policies/001_secure_audit_record.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false

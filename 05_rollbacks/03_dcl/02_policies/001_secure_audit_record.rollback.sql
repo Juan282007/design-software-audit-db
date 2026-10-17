@@ -1,0 +1,11 @@
+GRANT UPDATE
+ON TABLE audit.audit_record
+TO PUBLIC;
+
+GRANT DELETE
+ON TABLE audit.audit_record
+TO PUBLIC;
+
+GRANT TRUNCATE
+ON TABLE audit.audit_record
+TO PUBLIC;

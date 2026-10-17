@@ -1,0 +1,34 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-pgcrypto-extension
+      author: FreinierCardona
+      logicalFilePath: db/changelog/changes/001_base/001_create_pgcrypto_extension.sql
+      labels: "hu-003-dev,ddl,base,extensions"
+      comment: Enables the pgcrypto extension for the database baseline.
+      changes:
+        - sqlFile:
+            path: 001_create_pgcrypto_extension.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/00_extensions/001_create_pgcrypto_extension.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
+
+  - changeSet:
+      id: 002-create-uuid-extension
+      author: FreinierCardona
+      logicalFilePath: db/changelog/changes/001_base/002_create_uuid_extension.sql
+      labels: "hu-003-dev,ddl,base,extensions"
+      comment: Enables the uuid-ossp extension for the database baseline.
+      changes:
+        - sqlFile:
+            path: 002_create_uuid_extension.sql
+            relativeToChangelogFile: true
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/00_extensions/002_create_uuid_extension.rollback.sql
+            relativeToChangelogFile: true
+            stripComments: false
